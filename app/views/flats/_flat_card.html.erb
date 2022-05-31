@@ -1,5 +1,7 @@
 <div class="card-trip">
-  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+  <% if flat.photos.attached? %>
+    <%= cl_image_tag flat.photos[1].key %>
+  <% end %>
   <div class="card-trip-infos">
     <div>
       <h2><%= flat.name.capitalize %></h2>
