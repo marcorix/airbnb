@@ -1,13 +1,16 @@
-<div class="card-trip">
-  <% if flat.photos.attached? %>
-    <%= cl_image_tag flat.photos[1].key %>
-  <% end %>
-  <div class="card-trip-infos">
-    <div>
-      <h2><%= flat.name.capitalize %></h2>
-      <p><%= flat.city.capitalize %></p>
+<%= link_to flat_path(flat) do %>
+  <div class="card-trip">
+    <% if flat.photos.attached? %>
+      <%= cl_image_tag flat.photos[1].key %>
+    <% end %>
+    <div class="card-trip-infos">
+
+      <div>
+        <h2><%= flat.name.capitalize %></h2>
+        <p><%= flat.city.capitalize %></p>
+      </div>
+      <h2 class="card-trip-pricing">£ <%= flat.price %> p/night</h2>
+      <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
     </div>
-    <h2 class="card-trip-pricing">£ <%= flat.price %> p/night</h2>
-    <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
   </div>
-</div>
+<% end %>
