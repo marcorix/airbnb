@@ -7,6 +7,7 @@ gem "devise"
 gem 'country_select', '~> 6.0'
 gem 'cloudinary'
 gem "geocoder"
+gem "pg_search"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.3"
