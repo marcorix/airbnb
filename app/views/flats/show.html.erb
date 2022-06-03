@@ -1,5 +1,6 @@
 
-<div class="container py-8">
+<div class="container py-8" data-controller="insert-review">
+  <h2><%= @flat.name %></h2>
   <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -21,5 +22,21 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-  <h2><%= @flat.name %></h2>
+
+
+<h2><%= pluralize @flat.reviews.size, "review" %></h2>
+<div data-insert-review-target="items">
+  <% if @flat.reviews.blank? %>
+    Be the first to leave a review for <%= @flat.name %>
+  <% else %>
+    <% @flat.reviews.each do |review| %>
+      <%= render 'flats/review', review: review %>
+    <% end %>
+  <% end %>
+</div>
+
+<h2>leave a Review</h2>
+<%= render 'reviews/form', {flat: @flat, review: @review} %>
+
+<%= link_to "Back to all flats", flats_path %>
 </div>

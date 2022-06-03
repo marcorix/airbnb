@@ -19,7 +19,9 @@ class FlatsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @review = Review.new
+  end
 
   def new
     @flat = Flat.new

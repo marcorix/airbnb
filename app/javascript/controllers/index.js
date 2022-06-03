@@ -10,5 +10,8 @@ application.register("address-autocomplete", AddressAutocompleteController)
 import HelloController from "./hello_controller.js"
 application.register("hello", HelloController)
 
+import InsertReviewController from "./insert_review_controller.js"
+application.register("insert-review", InsertReviewController)
+
 import MapController from "./map_controller.js"
 application.register("map", MapController)
