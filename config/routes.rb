@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   resources :flats do
     resources :reviews, only: :create
   end
+
+  resources :chatrooms, only: :show
 end

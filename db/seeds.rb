@@ -4,12 +4,15 @@ require "open-uri"
 puts "Destroying Flats"
 Flat.destroy_all
 
+puts "Destroying Chatrooms"
+Chatroom.destroy_all
+
 puts "Destroying Users"
 User.destroy_all
 
 puts "Creating Users"
-user1 = User.create!(email: "marco@gmail.com", password: "123456", username: "Mark", owner: true)
-user2 = User.create!(email: "giorgio@gmail.com", password: "123456", username: "Gigio", owner: false)
+user1 = User.create!(email: "marco@gmail.com", password: "123456", username: "marcorix", owner: true)
+user2 = User.create!(email: "giorgio@gmail.com", password: "123456", username: "GiorgioGristina", owner: false)
 
 puts "Creating Flats"
 flat1 = Flat.new(name: "villa Torlonia",
