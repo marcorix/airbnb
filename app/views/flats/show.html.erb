@@ -1,6 +1,7 @@
 
 <div class="container py-8" data-controller="insert-review">
   <h2><%= @flat.name %></h2>
+  <p> Owner: <%= @flat.user.username %></p>
   <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -22,12 +23,14 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-
+<br>
 <%# Contact the Owner %>
-<%= simple_form_for [@chatroom], html: {class: "d-flex"} do |f| %>
-  <%= f.input :owner_id, :as => :hidden, :input_html => { :value => "#{@flat.user.id}" } %>
-  <%= f.input :flat_id, :as => :hidden, :input_html => { :value => "#{@flat.id}" } %>
-  <%= f.submit "Contact #{@flat.user.username}", class: "btn btn-primary mb-3" %>
+<% if @flat.user != current_user %>
+  <%= simple_form_for [@chatroom], html: {class: "d-flex"} do |f| %>
+    <%= f.input :owner_id, :as => :hidden, :input_html => { :value => "#{@flat.user.id}" } %>
+    <%= f.input :flat_id, :as => :hidden, :input_html => { :value => "#{@flat.id}" } %>
+    <%= f.submit "Contact #{@flat.user.username}", class: "btn btn-primary mb-3" %>
+  <% end %>
 <% end %>
 
 <hr>
