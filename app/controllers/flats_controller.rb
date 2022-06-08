@@ -21,6 +21,7 @@ class FlatsController < ApplicationController
 
   def show
     @review = Review.new
+    @chatroom = Chatroom.new
   end
 
   def new

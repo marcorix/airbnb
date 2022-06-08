@@ -1,0 +1,8 @@
+<div class="container py-5">
+  <h1><strong><%= current_user.username %></strong> 's Messages</h1>
+  <ul>
+    <% @chatrooms.each do |chat| %>
+      <li><%= link_to chat.name, chatroom_path(chat) %></li>
+    <% end %>
+  </ul>
+</div>

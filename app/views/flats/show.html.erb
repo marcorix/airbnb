@@ -23,6 +23,14 @@
   </button>
 </div>
 
+<%# Contact the Owner %>
+<%= simple_form_for [@chatroom], html: {class: "d-flex"} do |f| %>
+  <%= f.input :owner_id, :as => :hidden, :input_html => { :value => "#{@flat.user.id}" } %>
+  <%= f.input :flat_id, :as => :hidden, :input_html => { :value => "#{@flat.id}" } %>
+  <%= f.submit "Contact #{@flat.user.username}", class: "btn btn-primary mb-3" %>
+<% end %>
+
+<hr>
 
 <h2><%= pluralize @flat.reviews.size, "review" %></h2>
 <div data-insert-review-target="items">
