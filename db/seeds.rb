@@ -59,7 +59,7 @@ flat3 = Flat.new(name: "Casa Mare",
                   address: "Via Duca degli Abruzzi, 31, Portofino",
                   bedrooms: 2,
                   beds: 6,
-                  price: 2500,
+                  price: 5500,
                   wifi: true,
                   user: user2,
                   description: "Bright and spacious family or holiday home just a short walk from the beach, shopping, and restaurants, nicely positioned at the rear of the desirable gated community of Altos de Flamingo.")
