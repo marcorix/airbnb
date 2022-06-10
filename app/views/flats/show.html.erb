@@ -1,7 +1,9 @@
 
 <div class="container py-8" data-controller="insert-review">
-  <h2><%= @flat.name %></h2>
+  <h2><%= @flat.name %> - <%= @flat.country.capitalize %></h2>
   <p> Owner: <%= @flat.user.username %></p>
+  <p> Wi-fi: <%= @flat.wifi ? "yes" : "no" %></p>
+  <p> Guests: <%= @flat.guests %></p>
   <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">

@@ -2,10 +2,15 @@ class FlatsController < ApplicationController
   before_action :set_flat, only: %i[show edit update destroy]
 
   def index
-    if params[:query].present?
-      @flats = Flat.search_by_city_and_name_and_country(params[:query])
-    else
-      @flats = Flat.all
+
+    @flats = Flat.all
+
+    if params[:country].present?
+      @flats = @flats.where(country: params[:country])
+    end
+
+    if params[:wifi].present?
+      @flats = @flats.where(wifi: params[:wifi])
     end
 
     # The `geocoded` scope filters only flats with coordinates

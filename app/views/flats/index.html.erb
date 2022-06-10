@@ -6,14 +6,11 @@
 
     <div class="search-field w-50">
       <%= form_tag flats_path, method: :get, class: "d-flex" do %>
-        <%= text_field_tag :country,
-          params[:query],
-          class: "form-control",
-          placeholder: "Find a movie"
-        %>
-        <%= label_tag 'wi-fi' %>
-        <%= radio_button_tag 'wi-fi', 'true' %>
+        <%= select_tag :country, options_for_select(ISO3166::Country.all, "Country"), :include_blank => 'Select a country'%>
+        <%= label_tag 'wifi' %>
+        <%= radio_button_tag 'wifi', 'true' %>
         <%= label_tag 'guests' %>
+        <%= select_tag :card, options_for_select([ "VISA", "MasterCard" ], "MasterCard") %>
         <%= number_field_tag 'quantity', nil, in: 1...100 %>
         <%= submit_tag "Search", class: "btn btn-primary" %>
       <% end %>

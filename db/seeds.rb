@@ -35,7 +35,7 @@ puts "flat #{flat1.id} created"
 
 flat2 = Flat.new(name: "Red House",
                   guests: 4,
-                  country: "England",
+                  country: "France",
                   city: "london",
                   address: "4-17 Frederick Terrace",
                   bedrooms: 2,
@@ -54,7 +54,7 @@ puts "flat #{flat2.id} created"
 
 flat3 = Flat.new(name: "Casa Mare",
                   guests: 8,
-                  country: "italy",
+                  country: "Italy",
                   city: "Portofino",
                   address: "Via Duca degli Abruzzi, 31, Portofino",
                   bedrooms: 2,
