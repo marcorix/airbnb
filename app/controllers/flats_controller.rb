@@ -5,6 +5,7 @@ class FlatsController < ApplicationController
 
     @flats = Flat.all
 
+
     if params[:country].present?
       @flats = @flats.where(country: params[:country])
     end

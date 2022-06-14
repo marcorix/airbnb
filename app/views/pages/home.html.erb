@@ -1,8 +1,8 @@
 <div class="container py-5">
   <h1>Find your accomodation!</h1>
   <%= form_tag flats_path, method: :get, class: "d-flex" do %>
-    <%= text_field_tag :query,
-      params[:query],
+    <%= text_field_tag :postcode,
+      params[:postcode],
       class: "form-control",
       placeholder: "Find a flat"
     %>
@@ -11,6 +11,6 @@
   <% end %>
 
   <%= bar_chart({a: 4, f:8, g: 11, p: 2}) %>
-  <%= pie_chart Flat.group(:country).count %>
-  <%= line_chart Flat.group(:country).count %>
+  <%# <%= pie_chart (data: Flat.group(:country).count, colors: ["#b00", "#666"]) %> %>
+  <%= line_chart ({"France"=>1, "Italy"=>2}) %>
 </div>
