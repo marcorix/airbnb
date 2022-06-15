@@ -11,8 +11,13 @@ puts "Destroying Users"
 User.destroy_all
 
 puts "Creating Users"
+file = URI.open("https://avatars.githubusercontent.com/u/65777698?s=400&u=16c105c12a531a92bbd908de530c129d2409aad4&v=4")
 user1 = User.create!(email: "marco@gmail.com", password: "123456", username: "marcorix", owner: true)
+user1.photo.attach(io: file, filename: 'profile.jpg', content_type: 'image/jpg')
+
+file = URI.open("https://avatars.githubusercontent.com/u/63541341?v=4")
 user2 = User.create!(email: "giorgio@gmail.com", password: "123456", username: "GiorgioGristina", owner: false)
+user2.photo.attach(io: file, filename: 'profile.jpg', content_type: 'image/jpg')
 
 puts "Creating Flats"
 flat1 = Flat.new(name: "villa Torlonia",
@@ -31,7 +36,7 @@ flat1.photos.attach(io: file, filename: 'villa.jpg', content_type: 'image/jpg')
 file = URI.open("https://images.easyreserve.com/vacation_rentals/156714/xwide/dsc-8216-easyhdr.jpg")
 flat1.photos.attach(io: file, filename: 'villa2.jpg', content_type: 'image/jpg')
 flat1.save!
-puts "flat #{flat1.id} created"
+puts "flat id #{flat1.id} created"
 
 flat2 = Flat.new(name: "Red House",
                   guests: 4,
@@ -50,7 +55,7 @@ flat2.photos.attach(io: file, filename: 'red.jpg', content_type: 'image/jpg')
 file = URI.open("https://imganuncios.mitula.net/maisonette_in_churton_place_pimlico_london_sw1v_3370104634739008431.jpg")
 flat2.photos.attach(io: file, filename: 'red2.jpg', content_type: 'image/jpg')
 flat2.save!
-puts "flat #{flat2.id} created"
+puts "flat id #{flat2.id} created"
 
 flat3 = Flat.new(name: "Casa Mare",
                   guests: 8,
@@ -69,7 +74,7 @@ flat3.photos.attach(io: file, filename: 'portofino.jpg', content_type: 'image/jp
 file = URI.open("https://lid.zoocdn.com/645/430/5c6f8fcaef9a72130df4ffd93b6aa6155314f433.jpg")
 flat3.photos.attach(io: file, filename: 'portofino.jpg', content_type: 'image/jpg')
 flat3.save!
-puts "flat #{flat3.id} created"
+puts "flat id #{flat3.id} created"
 
 
 puts "Done!"

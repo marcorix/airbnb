@@ -10,7 +10,7 @@
         <p><%= flat.city.capitalize %></p>
       </div>
       <h2 class="card-trip-pricing">£ <%= flat.price %> p/night</h2>
-      <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+      <%= cl_image_tag flat.user.photo.key, class: "card-trip-user avatar-bordered" %>
     </div>
   </div>
 <% end %>
