@@ -8,7 +8,6 @@ export default class extends Controller {
     // console.log(this.element);
     // console.log(this.itemsTarget);
     // console.log(this.formTarget);
-
   }
 
   send(event) {
