@@ -42,8 +42,8 @@ class FlatsController < ApplicationController
   # POST /flats
   def create
     @flat = Flat.new(flat_params)
-
-    if @flat.save
+    @flat.user = current_user
+    if @flat.save!
       redirect_to @flat, notice: "Flat was successfully created."
     else
       render :new, status: :unprocessable_entity
