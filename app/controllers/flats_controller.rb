@@ -23,6 +23,11 @@ class FlatsController < ApplicationController
 
   # GET /flats/1
   def show
+    @markers =[{
+        lat: @flat.latitude,
+        lng: @flat.longitude,
+        marker_html: render_to_string(partial: "marker")
+      }]
   end
 
   # GET /flats/new
