@@ -1,0 +1,36 @@
+<div class="container">
+
+
+  <div class="row justify-content-center">
+    <div class="col-sm-8 my-3">
+      <h1 class="text-center">Flats</h1>
+      <%= form_with url: flats_path, method: :get, class: "d-flex" do %>
+        <%= text_field_tag :query,
+              params[:query],
+              class: "form-control",
+              placeholder: "Enter name or address.."
+          %>
+        <%= submit_tag "Search", name: "", class: "btn btn-info" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div id="flats">
+      <% @flats.each do |flat| %>
+        <%= render flat %>
+        <p>
+          <%= link_to "Show this flat", flat %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+
+  <div style="width: 100%; height: 600px;"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+
+  <%= link_to "New flat", new_flat_path %>
+
+</div>

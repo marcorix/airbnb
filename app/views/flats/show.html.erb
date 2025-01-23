@@ -1,0 +1,12 @@
+
+
+<%= render @flat %>
+
+<div>
+  <%= link_to "Edit this flat", edit_flat_path(@flat) %> |
+  <%= link_to "Back to flats", flats_path %>
+
+  <% if @flat.user == current_user %>
+    <%= button_to "Destroy this flat", @flat, method: :delete %>
+  <% end %>
+</div>
