@@ -23,4 +23,36 @@
     <% end %>
   </div>
 
+  <hr>
+
+  <div id="reviews" data-controller="reviews">
+    <div class="row">
+      <div class="col">
+        <% if @flat.reviews.empty? %>
+        <h2>No review for <%= @flat.name %> yet...</h2>
+        <% else %>
+          <h2> ⭐️ <%= @flat.average_rating.round(1)  %> · <%= @flat.reviews.count %> Reviews</h2>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row mt-3 mb-3">
+      <div class="col-lg-8">
+
+        <div class="row mb-3" data-reviews-target="reviews">
+
+          <% @flat.reviews.each do |review| %>
+            <%= render 'reviews/review', review: review %>
+          <% end %>
+        </div>
+
+      </div>
+
+      <div class="col-lg-4 border-start">
+        <%= render 'reviews/form', flat: @flat, review: @review %>
+      </div>
+    </div>
+  </div>
+
+
 </div>

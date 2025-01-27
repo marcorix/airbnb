@@ -1,5 +1,8 @@
 class Flat < ApplicationRecord
   belongs_to :user
+  has_many :reviews, dependent: :destroy
+
+  has_one_attached :photo
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
@@ -10,4 +13,17 @@ class Flat < ApplicationRecord
     using: {
       tsearch: { prefix: true } # <-- now `superman batm` will return something!
     }
+
+    def average_rating
+      if reviews.count == 0
+        return 0
+      else
+        sum = 0.0
+        reviews.each do |review|
+          sum += review.rating
+        end
+        return sum / reviews.count
+      end
+
+    end
 end

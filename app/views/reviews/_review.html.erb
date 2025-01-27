@@ -1,0 +1,5 @@
+
+<div class="col-12 col-lg-6 review-card">
+  <p><%= '⭐️' * review.rating %> by <i><%= review.user.nickname.capitalize  %></i><small> <%= review.weeks_ago %></small></p>
+  <p><%= review.comment.truncate(80) %></p>
+</div>

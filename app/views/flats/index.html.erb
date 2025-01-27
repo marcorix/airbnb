@@ -5,12 +5,14 @@
     <div class="col-sm-8 my-3">
       <h1 class="text-center">Flats</h1>
       <%= form_with url: flats_path, method: :get, class: "d-flex" do %>
-        <%= text_field_tag :query,
-              params[:query],
-              class: "form-control",
-              placeholder: "Enter name or address.."
-          %>
-        <%= submit_tag "Search", name: "", class: "btn btn-info" %>
+
+          <%= text_field_tag :query,
+                params[:query],
+                class: "form-control",
+                placeholder: "Enter name or address.."
+            %>
+          <%= submit_tag "Search", name: "", class: "btn btn-info" %>
+
       <% end %>
     </div>
   </div>
@@ -34,3 +36,4 @@
   <%= link_to "New flat", new_flat_path %>
 
 </div>
+<div class="container mt-"></div>
