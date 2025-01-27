@@ -20,7 +20,7 @@
   <div class="row justify-content-center">
     <div id="flats">
       <% @flats.each do |flat| %>
-        <%= render flat %>
+        <%= render 'flat_index', flat: flat %>
         <p>
           <%= link_to "Show this flat", flat %>
         </p>

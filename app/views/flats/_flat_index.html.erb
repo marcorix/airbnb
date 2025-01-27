@@ -1,0 +1,24 @@
+<div id="<%= dom_id flat %>">
+  <%= cl_image_tag flat.photo.key, height: 200, width: 300, crop: :fill %>
+  <p>
+    <strong>Name:</strong>
+    <%= flat.name %>
+  </p>
+
+  <p>
+    <strong>Address:</strong>
+    <%= flat.address %>
+  </p>
+
+  <p>
+    <strong>Price:</strong>
+    <%= flat.price %>
+  </p>
+
+  <p>
+    <strong>Guests:</strong>
+    <%= flat.guests %>
+  </p>
+
+
+</div>
