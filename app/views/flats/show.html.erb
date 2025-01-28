@@ -19,19 +19,40 @@
   </div>
 
 <%# FLAT DETAILS %>
-  <div class="row">
-    <div class="col">
+  <div class="row mt-5">
+    <div class="col-lg-8">
       <%= render 'flat_show', flat: @flat %>
+
+      <%= link_to "Edit this flat", edit_flat_path(@flat) %> |
+      <%= link_to "Back to flats", flats_path %>
+
+      <% if @flat.user == current_user %>
+        <%= button_to "Destroy this flat", @flat, method: :delete %>
+      <% end %>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">
+        Launch demo modal
+      </button>
     </div>
-  </div>
 
-  <div>
-    <%= link_to "Edit this flat", edit_flat_path(@flat) %> |
-    <%= link_to "Back to flats", flats_path %>
+    <!-- Button trigger modal -->
 
-    <% if @flat.user == current_user %>
-      <%= button_to "Destroy this flat", @flat, method: :delete %>
-    <% end %>
+<%# BOOKING FORM %>
+    <div class="col-lg-4">
+      <%= simple_form_for [@flat, @booking] do |f| %>
+
+        <div class="row">
+        <div class="col-6">
+          <%= f.input :start_date, as: :date, html5: true, label: "Check-in", placeholder: "check-in", disabled: current_user == @flat.user  %>
+        </div>
+        <div class="col-6">
+          <%= f.input :end_date, as: :date, html5: true, label: "Check-out", disabled: current_user == @flat.user %>
+        </div>
+        </div>
+
+        <%= f.input :message, label: false, placeholder: "Leave a message to the owner...", disabled: current_user == @flat.user %>
+        <%= f.submit 'Reserve', class: "btn btn-info w-100", disabled: current_user == @flat.user %>
+      <% end %>
+    </div>
   </div>
 
   <hr>
@@ -68,3 +89,8 @@
 
 
 </div>
+
+
+<!-- Modals -->
+<%= render 'modal_edit_form', flat: @flat %>
+

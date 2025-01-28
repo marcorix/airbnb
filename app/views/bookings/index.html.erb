@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>My Bookings</h1>
+  <ul>
+    <% @bookings.each do |booking| %>
+      <li>
+        <p><%= booking.flat.name %></p>
+        <p>from: <%= booking.start_date.strftime(" %A, %B %d.") %> to: <%= booking.end_date.strftime(" %A, %B %d.") %></p>
+
+        </li>
+    <% end %>
+  </ul>
+</div>
