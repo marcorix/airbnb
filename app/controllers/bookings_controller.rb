@@ -3,6 +3,11 @@ class BookingsController < ApplicationController
     @bookings = current_user.bookings
   end
 
+  def show
+    @booking = Booking.find(params[:id])
+    @message = Message.new
+  end
+
   def create
     @booking = Booking.new(booking_params)
     @flat = Flat.find(params[:flat_id])

@@ -4,7 +4,12 @@ Rails.application.routes.draw do
     resources :bookings, only: [:create]
     resources :reviews, only: [:new, :create]
   end
-  resources :bookings, only: [:index]
+
+  resources :bookings, only: [:index, :show, :destroy] do
+    resources :messages, only: [:create]
+  end
+
+  get 'users/:id', to: 'users#show', as: :user
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
