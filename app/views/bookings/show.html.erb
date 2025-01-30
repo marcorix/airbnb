@@ -1,6 +1,6 @@
+<%= turbo_stream_from "booking_#{@booking.id}_messages" %>
 <div class="container chat">
   <h1>Your booking for <%= @booking.flat.name %></h1>
-
   <div class="messages" id="messages">
     <% @booking.messages.each do |message| %>
       <%= render 'messages/message', message: message %>
@@ -9,7 +9,7 @@
 
   <%# FORM %>
   <%= simple_form_for [@booking, @message], html: { class: 'd-flex',
-                                                    data: {controller: 'reset-form', action: "submit->reset-form#reset"}}  do |f| %>
+                                                    data: {controller: 'reset-form', action: "submit-end->reset-form#reset"}}  do |f| %>
     <%= f.input :content, label: false, wrapper_html: {class: "flex-grow-1"}, placeholder: "Message... "%>
     <%= f.submit "Send", class: "btn btn-info mb-3" %>
   <% end %>
