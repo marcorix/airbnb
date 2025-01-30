@@ -6,11 +6,12 @@ import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 export default class extends Controller {
   static values = {
     apiKey: String,
-    markers: Array
+    markers: Array,
+    location: String
   }
 
   connect() {
-    console.log("hello from map controller")
+    console.log(this.locationValue)
     mapboxgl.accessToken = this.apiKeyValue
 
     this.map = new mapboxgl.Map({
@@ -21,6 +22,10 @@ export default class extends Controller {
 
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
+
+    if (this.hasLocationValue) {
+      this.#zoomToLocation(this.locationValue);
+    }
 
     this.map.addControl(
       new MapboxGeocoder({
@@ -46,5 +51,15 @@ export default class extends Controller {
     const bounds = new mapboxgl.LngLatBounds()
     this.markersValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
     this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 10 })
+  }
+
+  #zoomToLocation(location) {
+    fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json?types=place,postcode&access_token=${this.apiKeyValue}`)
+      .then(response => response.json())
+      .then((data) => {
+        const [lng, lat] = data.features[0].center
+        this.map.setCenter([lng, lat])
+        this.map.setZoom(14)
+      });
   }
 }

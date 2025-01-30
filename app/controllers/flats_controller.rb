@@ -4,7 +4,8 @@ class FlatsController < ApplicationController
 
   # GET /flats
   def index
-
+    @location = params[:location]
+    @flats = Flat.all
     if params[:query].present?
       @flats = Flat.search_by_address_and_name(params[:query])
     else

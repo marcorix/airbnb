@@ -1,16 +1,59 @@
 <%= turbo_stream_from "booking_#{@booking.id}_messages" %>
-<div class="container chat">
-  <h1>Your booking for <%= @booking.flat.name %></h1>
-  <div class="messages" id="messages">
-    <% @booking.messages.each do |message| %>
-      <%= render 'messages/message', message: message, user: current_user %>
+<div class="container">
+
+  <div class="row mt-5">
+    
+    <div class="col-lg-8">
+      <div class="booking-img" style="background-image: url('<%= cl_image_path(@booking.flat.photo.key, width: 800, height: 400, crop: :fill) %>')">
+        <h2>Your booking for <%= @booking.flat.name %></h2>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="booking-info border">
+        <h4><%= @booking.flat.name %></h4>
+        <p><%= @booking.flat.address %></p>
+        <p><%= @booking.flat.price %></p>
+        <p><%= @booking.flat.description %></p>
+        <button class="btn btn-info" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+          <i class="fa-regular fa-message"></i> Message
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<% if @booking.user == current_user  %>
+  <% interlocutor =  @booking.flat.user.nickname %>
+<% else %>
+  <% interlocutor =  @booking.user.nickname %>
+<% end %>
+
+<%# OFFCANVAS %>
+
+<div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel"><%= interlocutor %></h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="chat">
+
+    <div class="messages" id="messages">
+      <% @booking.messages.each do |message| %>
+        <%= render 'messages/message', message: message, user: current_user %>
+      <% end %>
+    </div>
+
+    <%# FORM %>
+    <%= simple_form_for [@booking, @message], html: { class: 'd-flex',
+                                                      data: {controller: 'reset-form', action: "turbo:submit-end->reset-form#reset"}}  do |f| %>
+      <%= f.input :content, label: false, wrapper_html: {class: "flex-grow-1"}, placeholder: "Message... "%>
+      <%= f.submit "Send", class: "btn btn-info mb-3" %>
     <% end %>
   </div>
 
-  <%# FORM %>
-  <%= simple_form_for [@booking, @message], html: { class: 'd-flex',
-                                                    data: {controller: 'reset-form', action: "submit-end->reset-form#reset"}}  do |f| %>
-    <%= f.input :content, label: false, wrapper_html: {class: "flex-grow-1"}, placeholder: "Message... "%>
-    <%= f.submit "Send", class: "btn btn-info mb-3" %>
-  <% end %>
+  </div>
 </div>

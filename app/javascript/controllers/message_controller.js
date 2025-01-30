@@ -14,7 +14,7 @@ export default class extends Controller {
     } else {
       this.element.classList.add("received");
       this.element.classList.remove("sent");
-
     }
+    this.element.scrollIntoView({ behavior: "smooth" }); // scroll to the bottom of the page
   }
 }

@@ -2,6 +2,8 @@ class Message < ApplicationRecord
   belongs_to :user
   belongs_to :booking
 
+  validates :content, presence: true
+
   after_create_commit :broadcast_message
 
   private
