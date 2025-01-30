@@ -1,24 +1,15 @@
-<div id="<%= dom_id flat %>">
-  <%= cl_image_tag flat.photo.key, height: 200, width: 300, crop: :fill %>
-  <p>
-    <strong>Name:</strong>
-    <%= flat.name %>
-  </p>
+<div id="<%= dom_id flat %>" class="col">
 
-  <p>
-    <strong>Address:</strong>
-    <%= flat.address %>
-  </p>
-
-  <p>
-    <strong>Price:</strong>
-    <%= flat.price %>
-  </p>
-
-  <p>
-    <strong>Guests:</strong>
-    <%= flat.guests %>
-  </p>
-
+<div class="card bg-white card-flats" style="min-width: 250px; max-width: 350px;">
+  <%= cl_image_tag flat.photo.key, class: "card-img-top", height: 200, crop: :fill %>
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+      <h5 class="card-title"><%= flat.address %></h5>
+      <p>⭐️ 4.8</p>
+    </div>
+    <p class="card-text"><%= flat.property_type %></p>
+    <p class="card-text"><strong>£ <%= flat.price %> night</strong></p>
+  </div>
+</div>
 
 </div>

@@ -1,3 +1,12 @@
 .review-card {
   height: 100px;
 }
+
+.card-flats {
+  border-radius: 18px;
+  overflow: hidden;
+  img {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+}
