@@ -3,7 +3,7 @@
   <h1>Your booking for <%= @booking.flat.name %></h1>
   <div class="messages" id="messages">
     <% @booking.messages.each do |message| %>
-      <%= render 'messages/message', message: message %>
+      <%= render 'messages/message', message: message, user: current_user %>
     <% end %>
   </div>
 
