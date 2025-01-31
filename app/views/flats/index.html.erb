@@ -1,9 +1,8 @@
 <div class="container">
 
-
   <div class="row justify-content-center">
     <div class="col-sm-8 my-3">
-      <h1 class="text-center">Flats</h1>
+
       <%= form_with url: flats_path, method: :get, class: "d-flex" do %>
 
           <%= text_field_tag :query,
@@ -18,10 +17,8 @@
   </div>
 
 
-  <div class="row justify-content-between my-5">
-    <% @flats.each do |flat| %>
-      <%= render 'flat_index', flat: flat %>
-    <% end %>
+  <div class="cards my-5">
+    <%= render @flats %>
   </div>
 
 

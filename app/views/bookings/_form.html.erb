@@ -1,0 +1,29 @@
+
+<%= simple_form_for [flat, booking] do |f| %>
+
+  <div class="row">
+  <div class="col-6" data-controller="flatpicker">
+    <%= f.input :check_in,
+                label: "Check-in/out",
+                input_html: { data: {flatpicker_target: "checkIn"} },
+                disabled: current_user == flat.user  %>
+    <%= f.input :start_date,
+                as: :hidden,
+                input_html: { data: { flatpicker_target: "start"} },
+                disabled: current_user == flat.user  %>
+    <%= f.input :end_date,
+                as: :hidden,
+                input_html: { data: { flatpicker_target: "end"} },
+                disabled: current_user == flat.user %>
+  </div>
+  <div class="col-6">
+    <%= f.input :guests,
+                collection: 1..10,
+                label: "guests",
+                disabled: current_user == flat.user %>
+  </div>
+  </div>
+
+  <%= f.input :message, label: false, placeholder: "Leave a message to the owner...", disabled: current_user == flat.user %>
+  <%= f.submit 'Reserve', class: "btn btn-info w-100", disabled: current_user == flat.user %>
+<% end %>

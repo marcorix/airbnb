@@ -38,20 +38,7 @@
 
 <%# BOOKING FORM %>
     <div class="col-lg-4">
-      <%= simple_form_for [@flat, @booking] do |f| %>
-
-        <div class="row">
-        <div class="col-6">
-          <%= f.input :start_date, as: :date, html5: true, label: "Check-in", placeholder: "check-in", disabled: current_user == @flat.user  %>
-        </div>
-        <div class="col-6">
-          <%= f.input :end_date, as: :date, html5: true, label: "Check-out", disabled: current_user == @flat.user %>
-        </div>
-        </div>
-
-        <%= f.input :message, label: false, placeholder: "Leave a message to the owner...", disabled: current_user == @flat.user %>
-        <%= f.submit 'Reserve', class: "btn btn-info w-100", disabled: current_user == @flat.user %>
-      <% end %>
+      <%= render 'bookings/form', flat: @flat, booking: @booking %>
     </div>
   </div>
 
@@ -93,4 +80,3 @@
 
 <!-- Modals -->
 <%= render 'modal_edit_form', flat: @flat %>
-

@@ -10,12 +10,21 @@ class Flat < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 
-  validates :name, presence: true
-  validates :address, presence: true
-  validates :price, presence: true
-  validates :description, presence: true
-  validates :guests, presence: true
-  validates :property_type, presence: true
+  # Reverse geocode to get city & country from latitude & longitude
+  reverse_geocoded_by :latitude, :longitude do |obj, results|
+    if geo = results.first
+      obj.city = geo.city
+      obj.country = geo.country
+    end
+  end
+  
+  after_validation :reverse_geocode
+  # validates :name, presence: true
+  # validates :address, presence: true
+  # validates :price, presence: true
+  # validates :description, presence: true
+  # validates :guests, presence: true
+  # validates :property_type, presence: true
 
   include PgSearch::Model
   pg_search_scope :search_by_address_and_name,

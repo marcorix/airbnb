@@ -1,0 +1,15 @@
+<div id="<%= dom_id flat %>" class="col">
+<%= link_to flat do %>
+  <div class="card bg-white card-flats">
+    <%= cl_image_tag flat.photo.key, class: "card-img-top", height: 200, crop: :fill %>
+    <div class="card-body">
+      <p class="card-title"><%= flat.city %>, <%= flat.country %></p>
+      <p class="card-text"><%= flat.property_type %></p>
+      <div class="d-flex justify-content-between">
+        <p class="card-text"><strong>£ <%= flat.price %> night</strong></p>
+        <p><i class="fa-solid fa-star"></i> 4.8</p>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
