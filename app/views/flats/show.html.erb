@@ -15,7 +15,7 @@
 
 
 <%# FLAT DETAILS %>
-  <div class="row mt-5">
+  <div class="row my-5">
     <div class="col-lg-8">
       <%= render 'flat_show', flat: @flat %>
 
@@ -35,13 +35,16 @@
     <div class="col-lg-4">
       <%= render 'bookings/form', flat: @flat, booking: @booking %>
     </div>
+
   </div>
 
-  <hr>
+<hr>
 
 <%# MAP %>
-  <div class="row my-3">
+  <div class="row my-5">
     <div class="col">
+      <h5>Where you’ll be</h5>
+      <p><%= @flat.address %></p>
       <div style="width: 100%; height: 300px;"
             class="rounded-5"
             data-controller="map"
@@ -51,6 +54,7 @@
     </div>
   </div>
 
+  <hr>
 <%# REVIEWS %>
   <div id="reviews" data-controller="reviews">
     <div class="row">
