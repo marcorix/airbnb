@@ -1,31 +1,27 @@
 <div>
-  <p>
-    <strong>Name:</strong>
-    <%= flat.name %>
-  </p>
+  <div class="d-flex align-items-center">
+    <h5 class="mb-0 me-3"><strong><%= flat.name %></strong></h5>
+    <% if @flat.reviews.empty? %>
+      ⭐️ · 4.5
+    <% else %>
+      ⭐️ <%= @flat.average_rating.round(1)  %> · <%= @flat.reviews.count %>
+    <% end %>
+  </div>
 
-  <p class="con">
-    <strong>Address:</strong>
-    <%= flat.address %>
-  </p>
+  <p><strong><%= flat.city %>, <%= flat.country %></strong></p>
+  <p><strong>Price: </strong><%= flat.price %></p>
+  <p><strong>Guests: </strong><%= flat.guests %></p>
 
-  <p>
-    <strong>Price:</strong>
-    <%= flat.price %>
-  </p>
 
-  <p>
-    <strong>Description:</strong>
-    <%= flat.description %>
-  </p>
+  <hr>
 
-  <p>
-    <strong>Guests:</strong>
-    <%= flat.guests %>
-  </p>
-  <p>
-    <strong>Listed by:</strong>
-    <%= flat.user.nickname %>
-  </p>
+  <div class="d-flex align-items-center my-4">
+    <%= image_tag 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuXEGCZl1QFq0tSzG7eWbLydP8N69jLNS8Ag&s', class: 'avatar-bordered me-3'%>
+    <span><strong>Hosted by: </strong><%= flat.user.nickname %></span>
+  </div>
+
+  <hr>
+
+  <p><%= flat.description %></p>
 
 </div>

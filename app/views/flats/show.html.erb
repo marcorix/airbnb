@@ -1,37 +1,32 @@
-<div class="container">
+<div class="container w-75">
 
-  <div class="row mt-5">
+    <div class="d-flex justify-content-between align-items-center mt-5">
+      <h2><%= @flat.name %></h2>
+      <%= link_to "Back to flats", flats_path %>
+    </div>
+
+
+  <div class="row">
     <div class="col">
-      <h1><%= @flat.name %></h1>
       <div class="img-wrap rounded-5" style="background-image: url('<%= cl_image_path  @flat.photo.key %>')"></div>
     </div>
   </div>
 
-  <div class="row mt-5">
-    <div class="col">
-      <div style="width: 100%; height: 300px;"
-            class="rounded-5"
-            data-controller="map"
-            data-map-markers-value="<%= @markers.to_json %>"
-            data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-      </div>
-    </div>
-  </div>
+
 
 <%# FLAT DETAILS %>
   <div class="row mt-5">
     <div class="col-lg-8">
       <%= render 'flat_show', flat: @flat %>
 
-      <%= link_to "Edit this flat", edit_flat_path(@flat) %> |
-      <%= link_to "Back to flats", flats_path %>
-
       <% if @flat.user == current_user %>
-        <%= button_to "Destroy this flat", @flat, method: :delete %>
+        <div class="d-flex">
+          <%= button_to "Remove this flat", @flat, method: :delete, class: "btn btn-danger me-2" %>
+          <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editModal">
+            Edit this flat
+          </button>
+        </div>
       <% end %>
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">
-        Launch demo modal
-      </button>
     </div>
 
     <!-- Button trigger modal -->
@@ -43,6 +38,18 @@
   </div>
 
   <hr>
+
+<%# MAP %>
+  <div class="row my-3">
+    <div class="col">
+      <div style="width: 100%; height: 300px;"
+            class="rounded-5"
+            data-controller="map"
+            data-map-markers-value="<%= @markers.to_json %>"
+            data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
+  </div>
 
 <%# REVIEWS %>
   <div id="reviews" data-controller="reviews">
