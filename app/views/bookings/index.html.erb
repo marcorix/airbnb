@@ -3,7 +3,7 @@
   <ul>
     <% @bookings.each do |booking| %>
       <li>
-        <p><%= booking.flat.name %></p>
+        <p><%= link_to booking.flat.name, booking %></p>
         <p>from: <%= booking.start_date.strftime(" %A, %B %d.") %> to: <%= booking.end_date.strftime(" %A, %B %d.") %></p>
 
         </li>
