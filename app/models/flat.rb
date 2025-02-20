@@ -5,7 +5,13 @@ class Flat < ApplicationRecord
 
 
 
-  has_one_attached :photo
+  has_many_attached :photos, dependent: :destroy
+
+  before_destroy :purge_photos
+
+  def purge_photos
+    photos.purge_later
+  end
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
@@ -17,7 +23,7 @@ class Flat < ApplicationRecord
       obj.country = geo.country
     end
   end
-  
+
   after_validation :reverse_geocode
   # validates :name, presence: true
   # validates :address, presence: true

@@ -1,7 +1,7 @@
 <div id="<%= dom_id flat %>" class="col">
 <%= link_to flat do %>
   <div class="card bg-white card-flats">
-    <%= cl_image_tag flat.photo.key, class: "card-img-top", height: 200, crop: :fill %>
+    <%= cl_image_tag flat.photos[0].key, class: "card-img-top", height: 200, crop: :fill %>
     <div class="card-body">
       <p class="card-title"><%= flat.city %>, <%= flat.country %></p>
       <p class="card-text"><%= flat.property_type %></p>

@@ -66,7 +66,8 @@ class FlatsController < ApplicationController
 
   # DELETE /flats/1
   def destroy
-    @flat.photo.purge
+    @flat.flat.photos.purge_later
+    
     @flat.destroy!
     redirect_to flats_url, notice: "Flat was successfully destroyed.", status: :see_other
   end
@@ -79,6 +80,6 @@ class FlatsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def flat_params
-      params.require(:flat).permit(:name, :address, :price, :description, :guests, :photo)
+      params.require(:flat).permit(:name, :address, :price, :description, :guests, photos: [])
     end
 end
