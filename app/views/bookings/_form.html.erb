@@ -1,9 +1,9 @@
-<div class="booking-form">
+<div class="booking-form mb-5" data-controller="flatpicker" data-flatpicker-price-value="<%= flat.price %>">
   <p><strong>£<%= flat.price %> </strong> night </p>
   <%= simple_form_for [flat, booking] do |f| %>
 
     <div class="row">
-    <div class="col-6" data-controller="flatpicker">
+    <div class="col-6" >
       <%= f.input :check_in,
                   label: "Check-in/out",
                   input_html: { data: {flatpicker_target: "checkIn"} },
@@ -29,4 +29,14 @@
     <%= f.submit 'Reserve', class: "btn btn-info w-100", disabled: current_user == flat.user %>
   <% end %>
 
+
+  <div class="d-flex justify-content-between mt-4">
+    <p><strong>£ <%= flat.price %> x <span data-flatpicker-target="days"></span> days</strong></p>
+  </div>
+
+  <hr>
+
+  <div class="d-flex justify-content-between">
+    <p class="m-0"><strong>Total</strong></p>
+    <p class="m-0"><strong>£ <span data-flatpicker-target="total">0.00</span></strong></p>
 </div>
